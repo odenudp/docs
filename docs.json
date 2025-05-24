@@ -17,7 +17,7 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:support@xenumhosting.com"
+        "href": "https://xenumhosting.com/support"
       }
     ],
     "primary": {
@@ -62,7 +62,12 @@
               "security/understanding-imunify360",
               "security/enabling-ddos"
             ]
-          },
+          }
+        ]
+      },
+      {
+        "tab": "Management",
+        "groups": [
           {
             "group": "Domain Management",
             "pages": [
@@ -88,7 +93,7 @@
         ]
       },
       {
-        "tab": "Resources",
+        "tab": "Support",
         "groups": [
           {
             "group": "Support & Contact",
@@ -123,18 +128,6 @@
         ]
       },
       {
-        "tab": "Legal",
-        "groups": [
-          {
-            "group": "Policies",
-            "pages": [
-              "terms-of-service/overview",
-              "privacy-policy/overview"
-            ]
-          }
-        ]
-      },
-      {
         "tab": "About",
         "groups": [
           {
@@ -143,6 +136,13 @@
               "about-us/overview",
               "contact-us/overview"
             ]
+          },
+          {
+            "group": "Legal",
+            "pages": [
+              "terms-of-service/overview",
+              "privacy-policy/overview"
+            ]
           }
         ]
       }
@@ -150,13 +150,8 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://docs.xenumhosting.com",
-          "icon": "book-open-cover"
-        },
-        {
           "anchor": "Community",
-          "href": "https://forum.xenumhosting.com",
+          "href": "https://x.com/xenumhosting",
           "icon": "slack"
         },
         {
@@ -170,11 +165,10 @@
   "footer": {
     "socials": {
       "x": "https://x.com/xenumhosting",
-      "github": "https://github.com/xenumhosting",
-      "linkedin": "https://linkedin.com/company/xenumhosting"
+      "github": "https://github.com/xenumhosting"
     }
   },
   "metadata": {
-    "description": "Comprehensive documentation for Xenum Hosting services, including setup, WordPress, email, security, domain management, and advanced hosting features."
+    "description": "Documentation for Xenum Hosting services, including setup, WordPress, email, security, domain management, and more."
   }
 }
