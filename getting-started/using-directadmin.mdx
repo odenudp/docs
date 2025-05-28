@@ -1,0 +1,86 @@
+---
+title: "Using the DirectAdmin Control Panel"
+description: "A comprehensive guide to navigating and using the DirectAdmin control panel for managing your Xenum Hosting account, including file management, email setup, and database creation."
+---
+
+# Using the DirectAdmin Control Panel
+
+DirectAdmin is a powerful and user-friendly web hosting control panel provided with your Xenum Hosting account. It allows you to manage all aspects of your hosting service through a graphical interface, without needing command-line knowledge. This guide will introduce you to the main features and common tasks you can perform in DirectAdmin.
+
+## Accessing DirectAdmin
+
+You can typically access DirectAdmin in two ways:
+
+1.  **Through the Client Area:** Log in to your Xenum Hosting client area. Navigate to your active hosting service and look for a "Log in to DirectAdmin" button or link.
+2.  **Direct URL:** You might also be able to access it via a direct URL, often like `http://yourdomain.com:2222` or `https://serverhostname:2222`. Check your welcome email for the specific URL and login credentials (which might be different from your client area login).
+
+## Navigating the Interface
+
+Once logged in, you'll see the DirectAdmin dashboard. The layout typically includes:
+
+*   **Top Menu:** Access to different user levels (if applicable), password changes, help resources, and logout.
+*   **Main Categories:** Features are grouped into categories like "Account Manager," "Email Management," "Advanced Features," and "System Info & Files."
+*   **Usage Statistics:** A summary of your resource usage (disk space, bandwidth, emails, databases, etc.).
+
+## Common Tasks in DirectAdmin
+
+Here’s how to perform some essential tasks:
+
+### 1. File Management
+
+*   Go to **System Info & Files -> File Manager**.
+*   This interface allows you to navigate directories, upload files (using the `Upload Files` button), create new folders (`Create Folder`), delete files/folders, change permissions (`Set Permissions`), and edit text files (`Edit`).
+*   Your website files should typically be uploaded to the `public_html` directory.
+
+**Troubleshooting:**
+*   **Upload Errors:** Check file size limits and ensure you have enough disk space. Verify you are uploading to the correct directory (`public_html` for the main domain).
+*   **Permission Issues:** If you can't access files or your website shows errors, check file/folder permissions. Standard permissions are `755` for directories and `644` for files.
+
+### 2. Email Account Management
+
+*   Go to **Email Management -> Email Accounts**.
+*   Click `Create Account`.
+*   Enter the desired email username (e.g., `info`), set a strong password, and define a quota (mailbox size limit).
+*   Click `Create Account`.
+*   You can manage existing accounts (change passwords, quotas, delete) from the same screen.
+*   Access webmail (like Roundcube or SquirrelMail) via the `Webmail` icon or by visiting `yourdomain.com/webmail`.
+
+**Troubleshooting:**
+*   **Cannot Send/Receive:** Verify DNS MX records are pointing correctly (see Domain Management docs). Check email client settings (server names, ports, authentication).
+*   **Quota Exceeded:** Increase the mailbox quota or delete old emails.
+
+### 3. Database Management (MySQL)
+
+*   Go to **Account Manager -> MySQL Management**.
+*   Click `Create New Database`.
+*   Enter a database name prefix (e.g., `mydb`) and a database username suffix (e.g., `myuser`). DirectAdmin often prefixes these with your account username (e.g., `youruser_mydb`, `youruser_myuser`).
+*   Generate or enter a strong password for the database user.
+*   Click `Create Database`.
+*   **phpMyAdmin:** Use the `phpMyAdmin` link (usually found in MySQL Management) to manage the database content directly (import/export data, run SQL queries, etc.).
+
+**Troubleshooting:**
+*   **Connection Errors:** Double-check the database name, username, password, and hostname (usually `localhost`) in your website's configuration file.
+*   **Access Denied:** Ensure the database user has the correct privileges for the database.
+
+### 4. Domain Management
+
+*   **Domain Setup:** (Account Manager -> Domain Setup) Add addon domains or parked domains.
+*   **Subdomain Management:** (Account Manager -> Subdomain Management) Create and manage subdomains (e.g., `blog.yourdomain.com`).
+*   **DNS Management:** (Account Manager -> DNS Management) Manage DNS records (A, CNAME, MX, TXT, etc.) if your domain uses Xenum Hosting's nameservers.
+
+### 5. Installing SSL Certificates
+
+*   Go to **Account Manager -> SSL Certificates**.
+*   DirectAdmin often integrates with Let's Encrypt for free SSL certificates.
+*   Select the option for "Free & automatic certificate from Let's Encrypt".
+*   Choose the domain entries to secure (e.g., `yourdomain.com`, `www.yourdomain.com`).
+*   Click `Save`.
+*   Ensure "Force SSL with https redirect" is enabled after the certificate is installed.
+
+**Troubleshooting:**
+*   **Validation Errors:** Ensure your domain's DNS (A or CNAME records) correctly points to the server IP address. Let's Encrypt needs to verify domain ownership.
+*   **Certificate Not Renewing:** Auto-renewal should be handled, but check the SSL Certificates section if you encounter issues.
+
+## Conclusion
+
+DirectAdmin provides a comprehensive suite of tools for managing your hosting account. Explore the different sections to familiarize yourself further. If you encounter specific issues or need guidance on advanced features, consult the relevant documentation sections or contact Xenum Hosting support.

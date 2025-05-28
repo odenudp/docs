@@ -1,0 +1,66 @@
+---
+title: "Connecting Your Domain"
+description: "Learn how to point your existing domain name to your Xenum Hosting account by updating nameservers. Includes troubleshooting tips."
+---
+
+# Connecting Your Domain to Xenum Hosting
+
+Your domain name (e.g., `yourwebsite.com`) is your website's address on the internet. To make your website live on Xenum Hosting, you need to connect your domain to our servers. This process usually involves updating your domain's nameservers at your domain registrar (where you purchased the domain).
+
+## 1. Find Your Xenum Hosting Nameservers
+
+Nameservers tell the internet where to find the hosting server associated with your domain. You need to get the specific nameservers assigned to your Xenum Hosting account.
+
+*   **Check Your Welcome Email:** The nameservers are typically included in the welcome email you received when you signed up.
+*   **Check the Client Area:** Log in to the Xenum Hosting client area. Look for a section detailing your hosting plan or server information. The nameservers should be listed there (often looking like `ns1.xenumhosting.com` and `ns2.xenumhosting.com` - *verify actual nameservers*).
+*   **Contact Support:** If you cannot find them, please contact our support team.
+
+You will usually receive at least two nameservers (Primary and Secondary) for redundancy.
+
+## 2. Log In to Your Domain Registrar
+
+Go to the website where you purchased your domain name (e.g., GoDaddy, Namecheap, Google Domains, etc.). Log in to your account there.
+
+## 3. Navigate to DNS / Nameserver Management
+
+Once logged in at your registrar, find the domain management section. Select the domain you want to connect to Xenum Hosting. Look for options like:
+
+*   DNS Management
+*   Manage Nameservers
+*   Change Nameservers
+
+The exact location and terminology vary between registrars.
+
+## 4. Update the Nameservers
+
+*   Select the option to use **custom nameservers** (as opposed to the registrar's default nameservers).
+*   Carefully enter the Xenum Hosting nameservers you found in Step 1. Ensure there are no typos.
+*   Remove any existing nameservers listed there.
+*   Save the changes.
+
+**Example:**
+*   Nameserver 1: `ns1.xenumhosting.com`
+*   Nameserver 2: `ns2.xenumhosting.com`
+
+*(Replace with the actual nameservers provided by Xenum Hosting)*
+
+## 5. Wait for DNS Propagation
+
+After you save the nameserver changes, it takes time for the update to spread across the internet. This is called DNS propagation.
+
+*   **Duration:** Propagation can take anywhere from a few minutes to 48 hours, although it's often completed within 2-4 hours.
+*   **What Happens:** During this time, some visitors might see your old website (if any), while others see the site hosted on Xenum Hosting.
+
+**Troubleshooting:**
+
+*   **Double-Check Nameservers:** Ensure you entered the nameservers exactly as provided by Xenum Hosting, without extra spaces or typos.
+*   **Domain Unlocked:** Some registrars require you to unlock your domain before changing nameservers. Check your registrar's settings.
+*   **Propagation Checkers:** You can use online tools like `dnschecker.org` to monitor the propagation progress globally. Enter your domain name and select "NS" record type.
+*   **Clear Browser Cache:** If propagation seems complete but you still see the old site, try clearing your browser's cache and cookies, or try accessing your site from a different network or device.
+*   **Registrar Hold:** Ensure your domain is active and not expired or on a registrar hold.
+
+## 6. Verify Connection
+
+Once propagation is complete, visiting your domain name in a web browser should load the default page or content you've uploaded to your Xenum Hosting account.
+
+If you continue to experience issues after 48 hours, please gather the domain name and the nameservers you entered and contact Xenum Hosting support for assistance.

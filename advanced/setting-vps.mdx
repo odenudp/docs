@@ -1,0 +1,302 @@
+---
+title: "Setting Up a VPS Server"
+description: "Learn how to set up, optimize, and manage a Virtual Private Server (VPS) on Xenum Hosting, including resource management, performance tuning, and security best practices."
+---
+
+# Setting Up and Optimizing a VPS Server
+
+A Virtual Private Server (VPS) provides dedicated resources and greater control compared to shared hosting. This guide covers everything you need to know about setting up and optimizing your VPS with Xenum Hosting.
+
+## Initial VPS Setup
+
+After purchasing a VPS plan from Xenum Hosting, follow these steps to get started:
+
+1. **Access Your VPS Control Panel**
+   * Log in to your Xenum Hosting client area
+   * Navigate to your VPS service
+   * Look for the VPS management interface (often labeled "Manage VPS" or similar)
+
+2. **Choose Your Operating System**
+   * Select from available options like Ubuntu, CentOS, or Debian
+   * Ubuntu is recommended for beginners due to its user-friendliness and extensive documentation
+   * CentOS/AlmaLinux is often preferred for business applications requiring stability
+
+3. **Access Your Server via SSH**
+   * For Windows: Use PuTTY or Windows Terminal
+   * For Mac/Linux: Use the built-in Terminal
+   * Connect using the IP address and root credentials provided in your welcome email
+   ```
+   ssh root@your_server_ip
+   ```
+
+4. **Perform Initial Security Setup**
+   * Update your system packages:
+     ```
+     # For Ubuntu/Debian
+     apt update && apt upgrade -y
+     
+     # For CentOS/AlmaLinux
+     yum update -y
+     ```
+   * Create a non-root user with sudo privileges:
+     ```
+     # For Ubuntu/Debian
+     adduser yourusername
+     usermod -aG sudo yourusername
+     
+     # For CentOS/AlmaLinux
+     adduser yourusername
+     passwd yourusername
+     usermod -aG wheel yourusername
+     ```
+   * Configure basic firewall:
+     ```
+     # For Ubuntu/Debian
+     ufw allow OpenSSH
+     ufw allow 80/tcp
+     ufw allow 443/tcp
+     ufw enable
+     
+     # For CentOS/AlmaLinux
+     firewall-cmd --permanent --add-service=ssh
+     firewall-cmd --permanent --add-service=http
+     firewall-cmd --permanent --add-service=https
+     firewall-cmd --reload
+     ```
+
+5. **Install a Web Server**
+   * For most websites, install LAMP stack (Linux, Apache, MySQL, PHP):
+     ```
+     # For Ubuntu/Debian
+     apt install apache2 mysql-server php libapache2-mod-php php-mysql -y
+     
+     # For CentOS/AlmaLinux
+     yum install httpd mariadb-server mariadb php php-mysqlnd -y
+     systemctl start httpd
+     systemctl enable httpd
+     systemctl start mariadb
+     systemctl enable mariadb
+     ```
+   * Secure MySQL/MariaDB:
+     ```
+     mysql_secure_installation
+     ```
+
+## Installing a Control Panel (Optional)
+
+A control panel simplifies server management with a graphical interface:
+
+1. **DirectAdmin** (if offered by Xenum Hosting)
+   * Follow the installation instructions provided by Xenum Hosting support
+   * Typically involves running an installation script
+
+2. **Alternative Control Panels**
+   * **Webmin** (free): 
+     ```
+     # For Ubuntu/Debian
+     apt install wget apt-transport-https software-properties-common
+     wget -q http://www.webmin.com/jcameron-key.asc -O- | apt-key add -
+     add-apt-repository "deb [arch=amd64] http://download.webmin.com/download/repository sarge contrib"
+     apt update
+     apt install webmin -y
+     ```
+   * Access Webmin at https://your_server_ip:10000
+
+## Optimizing VPS Performance
+
+### 1. Resource Monitoring
+
+Monitor your VPS resources to identify bottlenecks:
+
+* **Install monitoring tools**:
+  ```
+  # For Ubuntu/Debian
+  apt install htop iotop -y
+  
+  # For CentOS/AlmaLinux
+  yum install htop iotop -y
+  ```
+* **Check current resource usage**:
+  ```
+  htop  # Interactive process viewer
+  free -m  # Memory usage
+  df -h  # Disk usage
+  ```
+
+### 2. Web Server Optimization
+
+Optimize Apache for better performance:
+
+* **Edit Apache configuration**:
+  ```
+  # For Ubuntu/Debian
+  nano /etc/apache2/mods-available/mpm_prefork.conf
+  
+  # For CentOS/AlmaLinux
+  nano /etc/httpd/conf.modules.d/00-mpm.conf
+  ```
+* **Recommended settings** (adjust based on your VPS resources):
+  ```
+  <IfModule mpm_prefork_module>
+      StartServers             5
+      MinSpareServers          5
+      MaxSpareServers         10
+      MaxRequestWorkers      150
+      MaxConnectionsPerChild   0
+  </IfModule>
+  ```
+* **Enable caching modules**:
+  ```
+  # For Ubuntu/Debian
+  a2enmod expires
+  a2enmod headers
+  systemctl restart apache2
+  
+  # For CentOS/AlmaLinux
+  # Edit /etc/httpd/conf/httpd.conf to uncomment the modules
+  systemctl restart httpd
+  ```
+
+### 3. PHP Optimization
+
+Optimize PHP for better performance:
+
+* **Edit php.ini**:
+  ```
+  # For Ubuntu/Debian
+  nano /etc/php/7.4/apache2/php.ini  # Version number may differ
+  
+  # For CentOS/AlmaLinux
+  nano /etc/php.ini
+  ```
+* **Recommended settings**:
+  ```
+  memory_limit = 256M
+  max_execution_time = 300
+  upload_max_filesize = 64M
+  post_max_size = 64M
+  opcache.enable = 1
+  opcache.memory_consumption = 128
+  ```
+* **Restart web server after changes**:
+  ```
+  # For Ubuntu/Debian
+  systemctl restart apache2
+  
+  # For CentOS/AlmaLinux
+  systemctl restart httpd
+  ```
+
+### 4. MySQL/MariaDB Optimization
+
+Optimize database performance:
+
+* **Edit my.cnf**:
+  ```
+  # For Ubuntu/Debian
+  nano /etc/mysql/my.cnf
+  
+  # For CentOS/AlmaLinux
+  nano /etc/my.cnf
+  ```
+* **Add these settings** (adjust based on your VPS resources):
+  ```
+  [mysqld]
+  innodb_buffer_pool_size = 256M
+  innodb_log_file_size = 64M
+  query_cache_size = 32M
+  query_cache_limit = 1M
+  ```
+* **Restart MySQL/MariaDB**:
+  ```
+  systemctl restart mysql  # or mariadb
+  ```
+
+## Troubleshooting Common VPS Issues
+
+### High CPU Usage
+* **Identify resource-intensive processes**:
+  ```
+  top
+  ```
+* **Check Apache access logs**:
+  ```
+  # For Ubuntu/Debian
+  tail -f /var/log/apache2/access.log
+  
+  # For CentOS/AlmaLinux
+  tail -f /var/log/httpd/access_log
+  ```
+* **Solutions**: Optimize code, implement caching, block abusive IPs
+
+### Memory Issues
+* **Check memory usage**:
+  ```
+  free -m
+  ```
+* **If swap is needed**:
+  ```
+  # Create a 2GB swap file
+  dd if=/dev/zero of=/swapfile bs=1M count=2048
+  chmod 600 /swapfile
+  mkswap /swapfile
+  swapon /swapfile
+  
+  # Make permanent
+  echo '/swapfile none swap sw 0 0' >> /etc/fstab
+  ```
+
+### Disk Space Issues
+* **Check disk usage**:
+  ```
+  df -h
+  ```
+* **Find large files/directories**:
+  ```
+  du -h --max-depth=1 /var | sort -hr
+  ```
+* **Clean up log files**:
+  ```
+  find /var/log -type f -name "*.log" -exec truncate -s 0 {} \;
+  ```
+
+## Security Best Practices
+
+1. **Keep software updated**:
+   ```
+   # For Ubuntu/Debian
+   apt update && apt upgrade -y
+   
+   # For CentOS/AlmaLinux
+   yum update -y
+   ```
+
+2. **Install and configure fail2ban**:
+   ```
+   # For Ubuntu/Debian
+   apt install fail2ban -y
+   
+   # For CentOS/AlmaLinux
+   yum install epel-release -y
+   yum install fail2ban -y
+   ```
+
+3. **Disable root SSH login**:
+   * Edit SSH config:
+     ```
+     nano /etc/ssh/sshd_config
+     ```
+   * Change to:
+     ```
+     PermitRootLogin no
+     ```
+   * Restart SSH:
+     ```
+     systemctl restart sshd
+     ```
+
+4. **Regular backups**:
+   * Set up automated backups using scripts and cron jobs
+   * Store backups off-server
+
+By following these guidelines, you'll have a well-optimized, secure VPS that provides reliable performance for your websites and applications. If you encounter issues beyond these troubleshooting steps, contact Xenum Hosting support for assistance.

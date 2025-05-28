@@ -1,0 +1,69 @@
+---
+title: "Installing SSL Certificates"
+description: "Learn how to secure your website with HTTPS by installing free Let's Encrypt SSL certificates or premium SSL certificates using DirectAdmin on Xenum Hosting. Includes troubleshooting tips."
+---
+
+# Installing SSL Certificates (HTTPS)
+
+Securing your website with an SSL certificate (enabling HTTPS) is essential. It encrypts data between your visitors and your server, builds trust (showing the padlock icon in browsers), and improves search engine rankings. Xenum Hosting makes it easy to install SSL certificates using DirectAdmin.
+
+## Method 1: Installing Free Let's Encrypt SSL (Recommended)
+
+Let's Encrypt provides free, automated SSL certificates. DirectAdmin integrates seamlessly with Let's Encrypt.
+
+1.  **Log in to DirectAdmin.**
+2.  Navigate to **Account Manager** → **SSL Certificates**.
+3.  Ensure you are on the **"Certificate Requests"** tab (usually the default).
+4.  Select the option **"Free & automatic certificate from Let's Encrypt"**.
+5.  In the **"Let's Encrypt Certificate Entries"** section, check the boxes for the domain and subdomains you want to secure (e.g., `yourdomain.com`, `www.yourdomain.com`, `mail.yourdomain.com`).
+    *   *Tip:* It's generally recommended to secure both the `www` and non-`www` versions, plus the `mail` subdomain if you use webmail.
+6.  Click **Save**.
+
+DirectAdmin will now attempt to obtain and install the certificate from Let's Encrypt. This usually takes a minute or two. The system will also automatically handle renewals before the certificate expires (typically every 90 days).
+
+**After Installation:**
+*   Go back to **Account Manager** → **SSL Certificates**.
+*   At the bottom, ensure the option **"Force SSL with https redirect"** is enabled. This automatically redirects visitors from `http://` to `https://`.
+
+**Troubleshooting Let's Encrypt:**
+*   **"Certificate Request Failed" / Validation Error:**
+    *   **DNS Propagation:** Ensure your domain's A records (and CNAME for `www` if applicable) are correctly pointing to your Xenum Hosting server IP address and have fully propagated (can take up to 48 hours, usually much less).
+    *   **Firewall Issues:** Less common, but ensure no firewall is blocking Let's Encrypt's validation servers.
+    *   **.htaccess Rules:** Sometimes complex `.htaccess` rules can interfere with the validation process (specifically the `.well-known/acme-challenge` path). Try temporarily disabling `.htaccess`.
+    *   **Rate Limits:** Let's Encrypt has rate limits. If you've requested certificates too many times recently, you might need to wait.
+*   **Mixed Content Warnings:** After enabling HTTPS, if your browser shows warnings, it means some elements on your page (images, scripts, CSS) are still being loaded over `http://`. Update your website content/theme/plugins to use `https://` URLs for all resources.
+*   **Certificate Not Renewing:** Auto-renewal usually works, but if it fails, check the SSL Certificates section in DirectAdmin for error messages. Ensure DNS is still pointing correctly.
+
+## Method 2: Installing Premium SSL Certificates
+
+If you purchase a premium SSL certificate (e.g., OV or EV) from Xenum Hosting or a third-party Certificate Authority (CA):
+
+1.  **Generate a Certificate Signing Request (CSR):**
+    *   In DirectAdmin: **Account Manager** → **SSL Certificates**.
+    *   Select **"Create A Certificate Request"**.
+    *   Fill in the required details accurately (Common Name must be your exact domain name, e.g., `www.yourdomain.com`).
+    *   Click **Save**. DirectAdmin will display the CSR text and the corresponding Private Key. **Copy the entire CSR text block**, including the `-----BEGIN CERTIFICATE REQUEST-----` and `-----END CERTIFICATE REQUEST-----` lines.
+    *   **Important:** Keep the Private Key safe. You will need it later.
+2.  **Provide CSR to CA & Complete Validation:** Submit the copied CSR to your SSL provider. They will guide you through their validation process (e.g., email verification, file upload, DNS record).
+3.  **Receive Certificate Files:** Once validated, the CA will provide you with the certificate files, typically:
+    *   Your main certificate (`yourdomain.crt`)
+    *   Intermediate certificates / CA Bundle (`ca-bundle.crt` or similar)
+4.  **Install the Certificate in DirectAdmin:**
+    *   Go back to **Account Manager** → **SSL Certificates**.
+    *   Select **"Paste a pre-generated certificate and key"**.
+    *   **Paste the Private Key** you saved during CSR generation into the first box.
+    *   **Paste your main certificate (`yourdomain.crt`)** content into the second box below the key.
+    *   Click **Save**.
+    *   Now, click the link **"Click Here to paste a CA Root Certificate"**.
+    *   Paste the content of the **Intermediate/CA Bundle file (`ca-bundle.crt`)** into the box.
+    *   Ensure **"Use a CA Cert."** is checked.
+    *   Click **Save**.
+5.  **Enable Force HTTPS:** As with Let's Encrypt, ensure **"Force SSL with https redirect"** is enabled.
+
+**Troubleshooting Premium SSL:**
+*   **"Certificate Mismatch" Error:** Ensure the Common Name in the CSR exactly matches the domain you are securing.
+*   **"Private Key Mismatch" Error:** Ensure you are pasting the correct Private Key that corresponds to the certificate.
+*   **Incomplete Chain / Trust Issues:** Make sure you installed the CA Bundle/Intermediate certificates correctly.
+*   **Validation Delays:** Follow up with your CA if the validation process takes longer than expected.
+
+By following these steps, you can successfully install either free or premium SSL certificates to secure your website hosted on Xenum Hosting.

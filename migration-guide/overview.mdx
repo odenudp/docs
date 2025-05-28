@@ -1,0 +1,158 @@
+---
+title: "Migration Guide Overview"
+description: "Learn how to migrate your website, email, and domains from another hosting provider to Xenum Hosting with step-by-step instructions and troubleshooting tips."
+---
+
+# Website Migration Guide
+
+Moving your existing website, emails, and domains to Xenum Hosting is a straightforward process when you follow these guidelines. This comprehensive migration guide will help you transfer your online presence with minimal downtime.
+
+## Before You Begin
+
+Before starting the migration process:
+
+1. **Create a Backup**: Always create a complete backup of your current website, databases, emails, and important files.
+2. **Check Disk Space**: Ensure your Xenum Hosting plan has sufficient disk space for all your content.
+3. **Domain Status**: Verify your domain is unlocked at your current registrar if you plan to transfer it.
+4. **Gather Information**: Collect FTP/SFTP credentials, database details, and email configurations from your current host.
+5. **Plan for Downtime**: Schedule your migration during low-traffic periods to minimize disruption.
+
+## Website Migration Process
+
+### 1. Migrating Website Files
+
+#### Using FTP/SFTP Method:
+
+1. **Download Files from Current Host**:
+   * Connect to your current hosting using an FTP client (like FileZilla)
+   * Download all website files to your local computer
+
+2. **Upload Files to Xenum Hosting**:
+   * Log in to DirectAdmin
+   * Navigate to **File Manager** or use FTP credentials provided in your welcome email
+   * Upload all website files to the `public_html` directory (or appropriate subdirectory for addon domains)
+
+**Troubleshooting**:
+* **Connection Issues**: Verify FTP credentials and ensure your IP isn't blocked
+* **Upload Failures**: Try uploading in smaller batches if you encounter timeouts
+* **Permission Problems**: After uploading, check file permissions (typically 644 for files, 755 for directories)
+
+### 2. Migrating Databases
+
+1. **Export Database from Current Host**:
+   * Access phpMyAdmin on your current hosting
+   * Select the database to migrate
+   * Click "Export" and choose "Quick" export method with SQL format
+   * Save the .sql file to your computer
+
+2. **Import Database to Xenum Hosting**:
+   * Log in to DirectAdmin
+   * Go to **MySQL Management**
+   * Create a new database and user
+   * Access phpMyAdmin for the new database
+   * Click "Import" and select your .sql file
+   * Click "Go" to start the import process
+
+3. **Update Configuration Files**:
+   * Update your website's configuration files (like `wp-config.php` for WordPress) with the new database details:
+     ```php
+     define('DB_NAME', 'new_database_name');
+     define('DB_USER', 'new_database_username');
+     define('DB_PASSWORD', 'new_database_password');
+     define('DB_HOST', 'localhost');
+     ```
+
+**Troubleshooting**:
+* **Import Too Large**: Split large SQL files into smaller parts or increase PHP limits
+* **Timeout Errors**: Contact support to temporarily increase PHP execution time
+* **Database Connection Errors**: Double-check the database name, username, and password in configuration files
+
+### 3. Migrating Email Accounts
+
+1. **Create Email Accounts on Xenum Hosting**:
+   * In DirectAdmin, go to **Email Management** → **Email Accounts**
+   * Create accounts matching those on your previous host
+   * Set up strong passwords for each account
+
+2. **Migrate Email Messages (Optional)**:
+   * Configure both old and new email accounts in an email client like Thunderbird
+   * Select and drag messages from old account folders to new account folders
+   * For large mailboxes, consider using a dedicated email migration tool
+
+**Troubleshooting**:
+* **Missing Emails**: Check spam folders and ensure IMAP is enabled on both accounts
+* **Authentication Failures**: Verify email credentials and server settings
+* **Quota Issues**: Check if you've exceeded mailbox size limits
+
+## Domain Transfer Process
+
+### Option 1: Changing Nameservers (Keep Domain at Current Registrar)
+
+1. **Get Xenum Hosting Nameservers**:
+   * Find nameservers in your welcome email or client area (typically `ns1.xenumhosting.com` and `ns2.xenumhosting.com`)
+
+2. **Update Nameservers at Your Registrar**:
+   * Log in to your domain registrar
+   * Find domain management or DNS settings
+   * Replace current nameservers with Xenum Hosting nameservers
+   * Save changes
+
+3. **Wait for Propagation**:
+   * DNS changes typically take 24-48 hours to fully propagate
+   * You can check propagation status using online tools like `whatsmydns.net`
+
+### Option 2: Full Domain Transfer to Xenum Hosting
+
+1. **Prepare Domain for Transfer**:
+   * Ensure domain is unlocked at current registrar
+   * Disable privacy protection temporarily
+   * Obtain authorization/EPP code from current registrar
+   * Verify admin email address is correct
+
+2. **Initiate Transfer in Xenum Hosting**:
+   * Log in to Xenum Hosting client area
+   * Select "Transfer Domains"
+   * Enter domain name and authorization code
+   * Complete the payment process
+
+3. **Approve Transfer Request**:
+   * Check admin email for transfer approval request
+   * Follow instructions to approve the transfer
+   * Wait for transfer to complete (typically 5-7 days)
+
+**Troubleshooting**:
+* **Transfer Rejected**: Ensure domain is unlocked and not within 60 days of registration or previous transfer
+* **No Approval Email**: Check spam folder or contact current registrar
+* **Failed Transfer**: Verify the authorization code is correct and not expired
+
+## Post-Migration Checklist
+
+After completing the migration:
+
+1. **Test Website Functionality**:
+   * Check all pages, forms, and interactive elements
+   * Test on multiple browsers and devices
+   * Verify all images and media files load correctly
+
+2. **Test Email Functionality**:
+   * Send and receive test emails
+   * Check email forwarding and autoresponders if used
+   * Verify spam filtering is working
+
+3. **Update DNS Records if Needed**:
+   * Set up any custom DNS records (MX, TXT, CNAME) that were on your previous host
+   * Verify SSL certificate is working properly
+
+4. **Monitor for Issues**:
+   * Keep an eye on website performance for the first few days
+   * Check server logs for any errors
+
+## Need Assistance?
+
+If you encounter any issues during migration, Xenum Hosting's support team is available to help. Contact us through:
+
+* Support tickets in the client area
+* Live chat on our website
+* Email at support@xenumhosting.com
+
+For complex migrations, consider our professional migration service where our team handles the entire process for you.

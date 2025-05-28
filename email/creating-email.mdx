@@ -1,0 +1,138 @@
+---
+title: "Creating Email Accounts"
+description: "Learn how to create and manage email accounts with your domain, configure email clients, access webmail, and set up spam filtering on Xenum Hosting."
+---
+
+# Creating and Managing Email Accounts
+
+Professional email addresses using your own domain (like `you@yourdomain.com`) enhance your brand's credibility. This guide covers everything you need to know about setting up and managing email accounts with Xenum Hosting.
+
+## Creating Email Accounts in DirectAdmin
+
+Follow these steps to create new email accounts through your hosting control panel:
+
+1. **Log in to DirectAdmin** using your credentials.
+2. Navigate to **Email Management** → **Email Accounts**.
+3. Under **Create Account**:
+   * Enter the desired username (the part before @).
+   * Select the domain from the dropdown if you have multiple domains.
+   * Create a strong password (or use the password generator).
+   * Set a quota (mailbox size limit) - check your hosting plan for available space.
+4. Click **Create Account**.
+
+Your new email address will be immediately active and ready to use.
+
+**Managing Existing Accounts:**
+* **Change Password:** Click the key icon next to an account.
+* **Modify Quota:** Click the disk icon next to an account.
+* **Delete Account:** Click the trash icon (warning: this permanently deletes all emails).
+
+**Troubleshooting:**
+* **"Account Already Exists" Error:** Choose a different username.
+* **Quota Issues:** Ensure you haven't exceeded your hosting plan's email account limits.
+* **Password Rejected:** Use a stronger password with a mix of letters, numbers, and symbols.
+
+## Setting Up Email on Desktop Clients
+
+### Microsoft Outlook Setup
+
+1. Open Outlook and navigate to **File** → **Add Account** (or **Account Settings** → **New**).
+2. Enter your:
+   * **Name:** Your display name
+   * **Email Address:** your.name@yourdomain.com
+   * **Password:** Your email account password
+3. Click **Next** and let Outlook try automatic setup.
+4. If automatic setup fails, choose **Manual setup** and use these settings:
+   * **Account Type:** IMAP (recommended) or POP3
+   * **Incoming Mail Server:** mail.yourdomain.com (or check your welcome email)
+   * **Outgoing Mail Server (SMTP):** mail.yourdomain.com (or check your welcome email)
+   * **Username:** your.name@yourdomain.com (full email address)
+   * **Password:** Your email account password
+   * **Incoming Port:** 993 (IMAP with SSL) or 110 (POP3)
+   * **Outgoing Port:** 587 (with TLS) or 465 (with SSL)
+   * **Encryption:** SSL/TLS for both incoming and outgoing
+
+**Troubleshooting:**
+* **Connection Errors:** Verify server names and ports. Check if your ISP blocks these ports.
+* **Authentication Failed:** Double-check your full email address and password.
+* **Cannot Send Email:** Ensure outgoing server authentication is enabled.
+
+### Apple Mail Setup
+
+1. Open Mail and go to **Mail** → **Add Account** → **Other Mail Account**.
+2. Enter your name, email address, and password.
+3. If automatic setup fails, enter the server information as listed above for Outlook.
+
+## Configuring Email on Mobile Devices
+
+### iOS (iPhone/iPad)
+
+1. Go to **Settings** → **Mail** → **Accounts** → **Add Account** → **Other**.
+2. Tap **Add Mail Account**.
+3. Enter your name, email address, password, and description.
+4. Choose **IMAP** (recommended) or **POP**.
+5. Enter the server information:
+   * **Incoming:** mail.yourdomain.com, port 993 (IMAP+SSL) or 110 (POP3)
+   * **Outgoing:** mail.yourdomain.com, port 587 (TLS) or 465 (SSL)
+   * **Username:** your full email address
+   * **Password:** Your email password
+
+### Android
+
+1. Open the **Gmail** app (or your preferred mail app).
+2. Tap the menu icon → **Settings** → **Add account** → **Other**.
+3. Enter your email address and tap **Next**.
+4. Select **Personal (IMAP/POP)** if prompted.
+5. Enter your password and tap **Next**.
+6. Choose **IMAP** (recommended) or **POP3**.
+7. Enter the server settings as listed above.
+8. Configure sending options and tap **Next** to complete setup.
+
+**Troubleshooting Mobile Setup:**
+* **"Cannot Verify Server Identity":** You may need to accept the certificate warning.
+* **Setup Fails:** Try manual configuration with the exact server settings.
+* **Email Not Syncing:** Check your internet connection and account settings.
+
+## Accessing Webmail
+
+Webmail allows you to access your email through any web browser without configuring an email client.
+
+1. Go to `https://yourdomain.com/webmail` or `https://mail.yourdomain.com`.
+2. Enter your full email address and password.
+3. Choose your preferred webmail client:
+   * **Roundcube:** Modern interface with drag-and-drop functionality
+   * **Horde:** Feature-rich with calendar and task management
+   * **SquirrelMail:** Basic but lightweight interface
+
+**Troubleshooting:**
+* **Cannot Access Webmail:** Ensure your domain is properly pointed to Xenum Hosting.
+* **Login Failed:** Verify your email address and password.
+* **Webmail Loads Slowly:** Try a different webmail client option.
+
+## Spam Filtering
+
+Xenum Hosting includes spam filtering tools to protect your inbox.
+
+### Configuring SpamAssassin
+
+1. In DirectAdmin, go to **Email Management** → **SpamAssassin Configuration**.
+2. Enable SpamAssassin by checking the appropriate box.
+3. Set your preferred spam score threshold (5-7 is recommended to start).
+4. Configure options like adding spam tag to subject line.
+5. Click **Save**.
+
+### Managing Whitelists and Blacklists
+
+1. In DirectAdmin, go to **Email Management** → **SpamAssassin Configuration**.
+2. Scroll to the **Whitelist** and **Blacklist** sections.
+3. Add email addresses or domains:
+   * **Whitelist:** Always allow these senders
+   * **Blacklist:** Always mark these senders as spam
+4. Click **Save**.
+
+**Troubleshooting:**
+* **Legitimate Emails Marked as Spam:** Add the sender to your whitelist or lower the spam threshold.
+* **Spam Getting Through:** Increase the spam threshold or add persistent spammers to your blacklist.
+* **Email Delivery Delays:** Very aggressive spam settings can sometimes delay legitimate emails.
+
+By following these guides, you'll have professional email accounts set up and properly configured across all your devices.

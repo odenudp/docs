@@ -1,0 +1,102 @@
+---
+title: "Installing and Managing WordPress"
+description: "Learn how to install WordPress on Xenum Hosting using Softaculous or manually, plus tips for optimization, security, and troubleshooting common errors."
+---
+
+# Installing and Managing WordPress
+
+WordPress is the world's most popular Content Management System (CMS), known for its flexibility and ease of use. This guide covers everything you need to get started with WordPress on Xenum Hosting, from installation to basic management and troubleshooting.
+
+## Method 1: Installing WordPress with Softaculous (Recommended)
+
+Softaculous is an auto-installer available in DirectAdmin that simplifies installing applications like WordPress.
+
+1.  **Log in to DirectAdmin.**
+2.  Navigate to **Softaculous Apps Installer** (usually found under "Extra Features" or similar).
+3.  Hover over **WordPress** and click **Install**.
+4.  **Choose Installation URL:**
+    *   Select the protocol (`http://` or `https://` - choose `https://` if SSL is active).
+    *   Select the domain or subdomain where you want to install WordPress.
+    *   Leave the "In Directory" field **empty** to install WordPress directly at the chosen domain (e.g., `yourdomain.com`). If you want it in a subdirectory (e.g., `yourdomain.com/blog`), enter `blog`.
+5.  **Site Settings:**
+    *   Enter your **Site Name** and **Site Description**.
+6.  **Admin Account:**
+    *   Set a strong **Admin Username** (avoid "admin").
+    *   Create a strong **Admin Password**.
+    *   Enter your **Admin Email** address.
+7.  **Choose Language:** Select your preferred language for the WordPress dashboard.
+8.  **Select Plugins/Themes (Optional):** You can choose to install starter plugins or themes.
+9.  **Advanced Options (Optional):** Configure database names, backups, etc., if needed.
+10. Click **Install**.
+
+Softaculous will automatically create the database, copy files, and set up WordPress. You'll receive a confirmation with links to your site and the admin dashboard (`yourdomain.com/wp-admin`).
+
+**Troubleshooting:**
+*   **Installation Failed:** Check if you have enough disk space. Ensure the target directory (if specified) doesn't already contain files that conflict.
+*   **Cannot Access Admin:** Verify the admin URL and login credentials.
+
+## Method 2: Manual WordPress Installation
+
+If you prefer manual control or Softaculous isn't available:
+
+1.  **Download WordPress:** Get the latest version from [WordPress.org](https://wordpress.org/download/).
+2.  **Upload Files:**
+    *   Log in to DirectAdmin and open the **File Manager**.
+    *   Navigate to the `public_html` directory (or the specific directory for your addon/subdomain).
+    *   Upload the downloaded WordPress `.zip` file.
+    *   Select the `.zip` file and use the **Extract** function.
+    *   Ensure the extracted files (like `wp-admin`, `wp-content`, `wp-includes`) are directly inside `public_html`, not within a subdirectory named `wordpress`.
+3.  **Create Database:**
+    *   In DirectAdmin, go to **MySQL Management**.
+    *   Click **Create New Database**.
+    *   Enter a database name and username suffix.
+    *   Generate a strong password.
+    *   Note down the **Database Name**, **Database Username**, and **Password**.
+4.  **Configure `wp-config.php`:**
+    *   In the File Manager, find the file named `wp-config-sample.php`.
+    *   Rename it to `wp-config.php`.
+    *   Edit `wp-config.php`.
+    *   Update the following lines with your database details:
+        ```php
+        define( 'DB_NAME', 'youruser_dbname' );
+        define( 'DB_USER', 'youruser_dbuser' );
+        define( 'DB_PASSWORD', 'your_db_password' );
+        define( 'DB_HOST', 'localhost' ); // Usually localhost
+        ```
+    *   Save the changes.
+5.  **Run Installation Script:**
+    *   Open your domain (`yourdomain.com`) in your web browser.
+    *   The WordPress installation wizard should appear.
+    *   Follow the on-screen prompts to choose your language, set the site title, create the admin user, and complete the installation.
+
+**Troubleshooting:**
+*   **"Error Establishing Database Connection":** Double-check the database details in `wp-config.php`. Ensure the database user is assigned to the database with correct privileges in DirectAdmin -> MySQL Management.
+*   **"White Screen of Death" (WSOD):** Check for PHP errors (enable WP_DEBUG in `wp-config.php` or check server error logs). Could be a theme/plugin conflict or PHP memory limit issue.
+*   **File Permission Errors:** Ensure directories are `755` and files are `644`.
+
+## Optimizing WordPress Performance
+
+*   **Caching:** Use plugins like W3 Total Cache or WP Super Cache.
+*   **Image Optimization:** Compress images before uploading or use plugins like Smush.
+*   **Lightweight Theme:** Choose a well-coded, fast theme.
+*   **Minimize Plugins:** Deactivate and delete unused plugins.
+*   **Updates:** Keep WordPress core, themes, and plugins updated.
+*   **CDN:** Consider using a Content Delivery Network.
+
+## Securing Your WordPress Site
+
+*   **Strong Passwords & Usernames:** Avoid default usernames like "admin".
+*   **Updates:** Keep everything updated.
+*   **Security Plugin:** Install Wordfence or Sucuri Security.
+*   **Limit Login Attempts:** Use a plugin to prevent brute-force attacks.
+*   **SSL Certificate:** Ensure HTTPS is enabled.
+*   **Regular Backups:** Set up automated backups via DirectAdmin or a plugin.
+
+## Common WordPress Errors
+
+*   **WSOD:** Check error logs, disable plugins/themes.
+*   **Internal Server Error (500):** Check `.htaccess` file, increase PHP memory limit, check file permissions.
+*   **Database Connection Error:** Verify `wp-config.php` details.
+*   **404 Errors on Posts/Pages:** Go to WordPress Admin -> Settings -> Permalinks and click "Save Changes" to regenerate rewrite rules.
+
+By following these steps, you can successfully install, manage, and maintain your WordPress site on Xenum Hosting.

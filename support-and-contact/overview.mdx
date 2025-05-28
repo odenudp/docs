@@ -1,0 +1,75 @@
+---
+title: "Support and Contact Information"
+description: "Find out how to troubleshoot common issues and contact Xenum Hosting technical support effectively for assistance with your hosting services."
+---
+
+# Troubleshooting and Support
+
+Even the most reliable hosting services can sometimes present challenges. Knowing how to troubleshoot common issues and how to effectively contact support can save you time and minimize disruption. This guide provides resources for diagnosing problems and outlines the best ways to get help from the Xenum Hosting team.
+
+## Troubleshooting Common Issues
+
+Before contacting support, consider these common troubleshooting steps:
+
+1.  **Clear Your Browser Cache:** Sometimes display issues or outdated content are simply cached in your browser. Try clearing your cache and reloading the page.
+2.  **Check Error Logs:**
+    *   **Website Errors:** Look for `error_log` files in your website directories via File Manager.
+    *   **Server Errors (DirectAdmin):** Check **System Info & Files -> Site Summary / Statistics / Logs** for specific error logs.
+    *   **WordPress Debug Mode:** Enable `WP_DEBUG` in your `wp-config.php` file to see detailed PHP errors.
+3.  **Review Recent Changes:** Did the issue start after installing a new plugin, theme, or making configuration changes? Try reverting the change.
+4.  **Check Resource Usage:** Log in to DirectAdmin and check your **Resource Usage** (CPU, Memory, I/O, Entry Processes). High usage can cause slowness or errors.
+5.  **Verify DNS Propagation:** If you recently changed DNS settings or nameservers, use a tool like `dnschecker.org` to ensure the changes have propagated globally.
+6.  **Consult Specific Documentation:** Refer to the relevant sections in these docs (e.g., WordPress errors, SSL issues, Email configuration) for targeted troubleshooting steps.
+
+**Common Error Guides:**
+*   **404 Not Found:** Check URLs, file paths, and `.htaccess` rewrite rules.
+*   **500 Internal Server Error:** Check `.htaccess`, file permissions, script errors, and resource limits. Review server error logs.
+*   **Error Establishing Database Connection:** Verify database credentials in config files (`wp-config.php`, etc.), check if the database server is running, and ensure the user has privileges.
+*   **Slow Website:** Use tools like GTmetrix, check resource usage, optimize images/code, consider caching.
+
+## Contacting Xenum Hosting Support
+
+If you're unable to resolve the issue yourself, our support team is ready to assist. To ensure a quick and effective resolution, please use the following methods and provide detailed information:
+
+### Preferred Method: Support Ticket via Client Area
+
+1.  **Log in to the Xenum Hosting Client Area:** [https://xenumhosting.com/login](https://xenumhosting.com/login) (*Verify this URL*)
+2.  Navigate to the **Support** or **Open Ticket** section.
+3.  Select the appropriate department (e.g., Technical Support, Billing).
+4.  Choose the related service/domain if applicable.
+5.  **Provide Detailed Information:**
+    *   **Subject:** A clear and concise summary of the issue (e.g., "Cannot access email for domain.com", "Website showing 500 error").
+    *   **Body:**
+        *   **Detailed Description:** Explain the problem clearly.
+        *   **Affected Domain/Service:** Specify the exact website or service experiencing the issue.
+        *   **Steps to Reproduce:** List the steps someone else can follow to see the problem.
+        *   **Error Messages:** Copy and paste any exact error messages you see.
+        *   **Recent Changes:** Mention any changes made before the issue started.
+        *   **Troubleshooting Steps Taken:** Briefly list what you have already tried.
+    *   **Attachments:** Include screenshots of errors or relevant settings if possible.
+6.  Submit the ticket.
+
+**Benefits of Ticket System:** Tracks communication history, ensures issues are routed correctly, allows for detailed information exchange.
+
+### Other Contact Methods (Check Availability)
+
+*   **Live Chat:** Look for a live chat option on the Xenum Hosting website ([https://xenumhosting.com](https://xenumhosting.com)) for quick questions. *Note: Complex technical issues are often better handled via ticket.* 
+*   **Email:** You might be able to email support directly (e.g., `support@xenumhosting.com` - *Verify this address*). However, using the ticket system is generally preferred for tracking.
+*   **Phone Support:** Check the Xenum Hosting website for a support phone number if available. *Note: Phone support may be limited or best for urgent issues.*
+
+### Information to Provide
+
+Regardless of the method, having this information ready helps us help you faster:
+
+*   Your Client Area email address or account identifier.
+*   The primary domain name associated with the issue.
+*   Specific error messages.
+*   Steps to reproduce the problem.
+*   Approximate time the issue started.
+*   Any relevant login details (provide securely if requested by support).
+
+## Service Level Agreement (SLA)
+
+Please refer to our [Service Level Agreement (SLA)](../sla/overview) page for details on support response times and service guarantees.
+
+By providing clear information and utilizing the appropriate support channels, we can work together to resolve any issues you encounter promptly.
