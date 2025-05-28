@@ -8,6 +8,73 @@
     "dark": "#117866"
   },
   "favicon": "/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Hosting Basics",
+            "pages": [
+              "getting-started/how-to-set-up",
+              "getting-started/connecting-domain",
+              "getting-started/using-directadmin"
+            ]
+          },
+          {
+            "group": "Core Services",
+            "pages": [
+              "wordpress/installing-wordpress",
+              "email/creating-email",
+              "security/installing-ssl",
+              "domain/registering-domain",
+              "advanced/setting-vps",
+              "migration-guide/overview"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Reference",
+        "groups": [
+          {
+            "group": "Help Center",
+            "pages": [
+              "support-and-contact/overview"
+            ]
+          },
+          {
+            "group": "User Guides",
+            "pages": [
+              "knowledge-base/overview",
+              "faq/overview",
+              "billing-and-payments/overview",
+              "sla/overview"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Documentation",
+          "href": "https://xenumhosting.com/docs",
+          "icon": "book-open-cover"
+        },
+        {
+          "anchor": "Community",
+          "href": "https://x.com/xenumhosting",
+          "icon": "slack"
+        },
+        {
+          "anchor": "Blog",
+          "href": "https://blog.xenumhosting.com",
+          "icon": "newspaper"
+        }
+      ]
+    }
+  },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg",
@@ -26,149 +93,11 @@
       "href": "https://xenumhosting.com/login"
     }
   },
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Guides",
-        "groups": [
-          {
-            "group": "Getting Started",
-            "pages": [
-              "getting-started/how-to-set-up",
-              "getting-started/connecting-domain",
-              "getting-started/using-directadmin"
-            ]
-          },
-          {
-            "group": "WordPress Hosting",
-            "pages": [
-              "wordpress/installing-wordpress",
-              "wordpress/optimizing-performance",
-              "wordpress/securing-wordpress"
-            ]
-          },
-          {
-            "group": "Email Configuration",
-            "pages": [
-              "email/creating-email",
-              "email/setting-up-outlook",
-              "email/configuring-mobile"
-            ]
-          },
-          {
-            "group": "Security & SSL",
-            "pages": [
-              "security/installing-ssl",
-              "security/understanding-imunify360",
-              "security/enabling-ddos"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Management",
-        "groups": [
-          {
-            "group": "Domain Management",
-            "pages": [
-              "domain/registering-domain",
-              "domain/configuring-dns",
-              "domain/setting-subdomains"
-            ]
-          },
-          {
-            "group": "Advanced Hosting",
-            "pages": [
-              "advanced/setting-vps",
-              "advanced/managing-databases",
-              "advanced/creating-cron"
-            ]
-          },
-          {
-            "group": "Migration Guide",
-            "pages": [
-              "migration-guide/overview"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Support",
-        "groups": [
-          {
-            "group": "Support & Contact",
-            "pages": [
-              "support-and-contact/overview"
-            ]
-          },
-          {
-            "group": "Billing & Payments",
-            "pages": [
-              "billing-and-payments/overview"
-            ]
-          },
-          {
-            "group": "Service Level Agreement",
-            "pages": [
-              "sla/overview"
-            ]
-          },
-          {
-            "group": "Knowledge Base",
-            "pages": [
-              "knowledge-base/overview"
-            ]
-          },
-          {
-            "group": "FAQ",
-            "pages": [
-              "faq/overview"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "About",
-        "groups": [
-          {
-            "group": "Company",
-            "pages": [
-              "about-us/overview",
-              "contact-us/overview"
-            ]
-          },
-          {
-            "group": "Legal",
-            "pages": [
-              "terms-of-service/overview",
-              "privacy-policy/overview"
-            ]
-          }
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Community",
-          "href": "https://x.com/xenumhosting",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://blog.xenumhosting.com",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
   "footer": {
     "socials": {
       "x": "https://x.com/xenumhosting",
-      "github": "https://github.com/xenumhosting"
+      "github": "https://github.com/xenumhosting",
+      "linkedin": "https://linkedin.com/company/xenumhosting"
     }
-  },
-  "metadata": {
-    "description": "Documentation for Xenum Hosting services, including setup, WordPress, email, security, domain management, and more."
   }
 }
