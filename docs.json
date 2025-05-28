@@ -14,7 +14,7 @@
         "tab": "Guides",
         "groups": [
           {
-            "group": "Hosting Basics",
+            "group": "Get Started",
             "pages": [
               "getting-started/how-to-set-up",
               "getting-started/connecting-domain",
@@ -22,7 +22,7 @@
             ]
           },
           {
-            "group": "Core Services",
+            "group": "Essentials",
             "pages": [
               "wordpress/installing-wordpress",
               "email/creating-email",
@@ -38,13 +38,13 @@
         "tab": "Reference",
         "groups": [
           {
-            "group": "Help Center",
+            "group": "Support Resources",
             "pages": [
               "support-and-contact/overview"
             ]
           },
           {
-            "group": "User Guides",
+            "group": "Additional Guides",
             "pages": [
               "knowledge-base/overview",
               "faq/overview",
