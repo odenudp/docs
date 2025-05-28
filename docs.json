@@ -66,11 +66,6 @@
           "anchor": "Community",
           "href": "https://x.com/xenumhosting",
           "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://blog.xenumhosting.com",
-          "icon": "newspaper"
         }
       ]
     }
